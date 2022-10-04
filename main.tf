@@ -12,7 +12,7 @@ module "spring-boot-admin" {
 
 resource "helm_release" "kube-prometheus-stack" {
   chart            = "kube-prometheus-stack"
-  name             = "kube-prometheus-stack"
+  name             = "kube-prometheus-stack2"
   namespace        = "monitoring"
   create_namespace = true
   repository       = "https://prometheus-community.github.io/helm-charts"
@@ -25,7 +25,7 @@ resource "helm_release" "kube-prometheus-stack" {
 
 resource "helm_release" "loki-stack" {
   chart            = "loki-stack"
-  name             = "loki-stack"
+  name             = "loki-stack2"
   namespace        = "monitoring"
   create_namespace = true
   repository       = "https://grafana.github.io/helm-charts"

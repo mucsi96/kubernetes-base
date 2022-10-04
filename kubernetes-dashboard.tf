@@ -1,6 +1,6 @@
 resource "helm_release" "kubernetes-dashboard" {
   name       = "kubernetes-dashboard"
-  namespace  = "kubernetes-dashboard"
+  namespace  = "monitoring"
   chart      = "kubernetes-dashboard"
   repository = "https://kubernetes.github.io/dashboard"
   version    = "5.10.0"
@@ -33,6 +33,6 @@ resource "kubernetes_cluster_role_binding" "kubernetes-dashboard" {
   subject {
     kind      = "ServiceAccount"
     name      = "kubernetes-dashboard"
-    namespace = "kubernetes-dashboard"
+    namespace = "monitoring"
   }
 }
