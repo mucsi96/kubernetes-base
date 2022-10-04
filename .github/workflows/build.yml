@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Authenticate to Docker Hub
+        run: |
+            docker login \
+              --username ${{ secrets.DOCKER_HUB_USERNAME }} \
+              --password ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Authenticate to Kubernetes cluster
+        run: |
+            mkdir ~/.kube
+            echo "${{ secrets.KUBERNETES_CLUSTER_CA_CERTIFICATE }}" > ~/.kube/cluster_ca_certificate.pem
+            echo "${{ secrets.KUBERNETES_CLIENT_CERTIFICATE }}" > ~/.kube/client_certificate.pem
+            echo "${{ secrets.KUBERNETES_CLIENT_KEY }}" > ~/.kube/client_key.pem
+            kubectl config set-cluster appcluster \
+              --server ${{ secrets.KUBERNETES_HOST }} \
+              --certificate-authority ~/.kube/cluster_ca_certificate.pem
+            kubectl config set-credentials appuser \
+              --client-certificate ~/.kube/client_certificate.pem \
+              --client-key ~/.kube/client_key.pem
+            kubectl config set-context appcontext \
+              --cluster appcluster \
+              --user appuser
+            kubectl config use-context appcontext
+      - name: Terraform format
+        run: terraform fmt -check -diff
+      - name: Terraform init
+        run: terraform init
+      - name: Terraform plan
+        run: terraform plan -input=false -out=tfplan
+      - name: Terraform apply
+        # env:
+        #   TF_LOG: TRACE
+        run: terraform apply -auto-approve  tfplan
