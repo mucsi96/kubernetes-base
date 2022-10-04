@@ -29,7 +29,7 @@ resource "kubernetes_manifest" "nginx_service_monitor" {
 
 resource "kubernetes_config_map" "nginx_dashboard" {
   metadata {
-    name      = "nginx-dashboard2"
+    name      = "nginx-dashboard"
     namespace = "monitoring"
     labels = {
       grafana_dashboard = 1
