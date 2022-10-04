@@ -1,42 +1,42 @@
 # CRD Ref: https://prometheus-operator.dev/docs/operator/api/#monitoring.coreos.com/v1.ServiceMonitor
-resource "kubernetes_manifest" "spring_boot_service_monitor" {
+resource "kubernetes_manifest" "mysql_service_monitor" {
   manifest = {
     apiVersion = "monitoring.coreos.com/v1"
     kind       = "ServiceMonitor"
     metadata = {
-      name      = "spring-boot"
-      namespace = var.namespace
+      name      = "mysql"
+      namespace = "monitoring"
       labels = {
         "release" = helm_release.kube-prometheus-stack.name
       }
     }
     spec = {
       endpoints = [{
-        port = "management"
-        path = "/actuator/prometheus"
+        port = "metrics"
+        path = "/metrics"
       }]
       namespaceSelector = {
         any = true
       }
       selector = {
         matchLabels = {
-          scrape : "spring-boot"
+          scrape = "mysql"
         }
       }
     }
   }
 }
 
-resource "kubernetes_config_map" "jvm-micrometer_dashboard" {
+resource "kubernetes_config_map" "mysql_dashboard" {
   metadata {
-    name      = "jvm-micrometer-dashboard"
-    namespace = var.namespace
+    name      = "mysql-dashboard"
+    namespace = "monitoring"
     labels = {
       grafana_dashboard = 1
     }
   }
 
   data = {
-    "jvm-micrometer_rev1.json" = file("${path.module}/dashboards/jvm-micrometer_rev1.json")
+    "mysql-overview_rev1.json" = file("${path.module}/dashboards/mysql-overview_rev1.json")
   }
 }

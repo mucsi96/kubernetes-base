@@ -5,7 +5,7 @@ resource "kubernetes_manifest" "traefik_pod_monitor" {
     kind       = "PodMonitor"
     metadata = {
       name      = "traefik"
-      namespace = var.namespace
+      namespace = "monitoring"
       labels = {
         "release" = helm_release.kube-prometheus-stack.name
       }
@@ -30,7 +30,7 @@ resource "kubernetes_manifest" "traefik_pod_monitor" {
 resource "kubernetes_config_map" "traefik_dashboard" {
   metadata {
     name      = "traefik-dashboard"
-    namespace = var.namespace
+    namespace = "monitoring"
     labels = {
       grafana_dashboard = 1
     }

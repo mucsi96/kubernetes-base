@@ -1,7 +1,7 @@
 resource "kubernetes_config_map" "logs_dashboard" {
   metadata {
     name      = "logs-dashboard"
-    namespace = var.namespace
+    namespace = "monitoring"
     labels = {
       grafana_dashboard = 1
     }

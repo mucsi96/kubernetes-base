@@ -5,7 +5,7 @@ resource "kubernetes_manifest" "nginx_service_monitor" {
     kind       = "ServiceMonitor"
     metadata = {
       name      = "nginx"
-      namespace = var.namespace
+      namespace = "monitoring"
       labels = {
         "release" = helm_release.kube-prometheus-stack.name
       }
@@ -30,7 +30,7 @@ resource "kubernetes_manifest" "nginx_service_monitor" {
 resource "kubernetes_config_map" "nginx_dashboard" {
   metadata {
     name      = "nginx-dashboard"
-    namespace = var.namespace
+    namespace = "monitoring"
     labels = {
       grafana_dashboard = 1
     }
