@@ -28,10 +28,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "Gf5xISVVz"
-      },
+      "datasource": {},
       "gridPos": {
         "h": 13,
         "w": 12,
@@ -56,7 +53,7 @@
             "uid": "Gf5xISVVz"
           },
           "editorMode": "builder",
-          "expr": "{container=\"server\"} |= ``",
+          "expr": "{app=\"server\"} |= ``",
           "key": "Q-dc9ca65e-0102-4929-a080-b4fdf5454565-0",
           "queryType": "range",
           "refId": "A"
@@ -67,10 +64,7 @@
       "type": "logs"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "Gf5xISVVz"
-      },
+      "datasource": {},
       "gridPos": {
         "h": 13,
         "w": 12,
@@ -95,7 +89,7 @@
             "uid": "Gf5xISVVz"
           },
           "editorMode": "builder",
-          "expr": "{container=\"client\"} |= ``",
+          "expr": "{app=\"client\"} |= ``",
           "key": "Q-dc9ca65e-0102-4929-a080-b4fdf5454565-0",
           "queryType": "range",
           "refId": "A"
@@ -106,10 +100,7 @@
       "type": "logs"
     },
     {
-      "datasource": {
-        "type": "loki",
-        "uid": "Gf5xISVVz"
-      },
+      "datasource": {},
       "gridPos": {
         "h": 13,
         "w": 12,
@@ -134,7 +125,7 @@
             "uid": "Gf5xISVVz"
           },
           "editorMode": "builder",
-          "expr": "{container=\"database\"} |= ``",
+          "expr": "{app=\"database\"} |= ``",
           "key": "Q-dc9ca65e-0102-4929-a080-b4fdf5454565-0",
           "queryType": "range",
           "refId": "A"
