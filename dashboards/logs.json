@@ -28,7 +28,10 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {},
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "gridPos": {
         "h": 13,
         "w": 12,
@@ -50,11 +53,10 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "Gf5xISVVz"
+            "uid": "P8E80F9AEF21F6940"
           },
-          "editorMode": "builder",
-          "expr": "{app=\"server\"} |= ``",
-          "key": "Q-dc9ca65e-0102-4929-a080-b4fdf5454565-0",
+          "editorMode": "code",
+          "expr": "{app=\"server\"}",
           "queryType": "range",
           "refId": "A"
         }
@@ -64,7 +66,10 @@
       "type": "logs"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "gridPos": {
         "h": 13,
         "w": 12,
@@ -86,11 +91,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "Gf5xISVVz"
+            "uid": "P8E80F9AEF21F6940"
           },
-          "editorMode": "builder",
-          "expr": "{app=\"client\"} |= ``",
-          "key": "Q-dc9ca65e-0102-4929-a080-b4fdf5454565-0",
+          "expr": "{app=\"client\"}",
           "queryType": "range",
           "refId": "A"
         }
@@ -100,7 +103,10 @@
       "type": "logs"
     },
     {
-      "datasource": {},
+      "datasource": {
+        "type": "loki",
+        "uid": "P8E80F9AEF21F6940"
+      },
       "gridPos": {
         "h": 13,
         "w": 12,
@@ -122,11 +128,9 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "Gf5xISVVz"
+            "uid": "P8E80F9AEF21F6940"
           },
-          "editorMode": "builder",
-          "expr": "{app=\"database\"} |= ``",
-          "key": "Q-dc9ca65e-0102-4929-a080-b4fdf5454565-0",
+          "expr": "{app=\"database\"}",
           "queryType": "range",
           "refId": "A"
         }
