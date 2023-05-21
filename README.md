@@ -1,4 +1,4 @@
-# kubernetes-base
+# kubernetes-base DEPRECATED in favor of https://github.com/mucsi96/kubetools
 
 ## Setup the cluster
 
